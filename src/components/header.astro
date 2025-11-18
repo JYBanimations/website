@@ -1,10 +1,55 @@
 ---
 import Navigation from './navigation.astro';
 import Menu from './menu.astro';
+import Logo from './logo.astro';
 ---
 <header>
-  <nav>
-    <Menu />
-    <Navigation />
-  </nav>
+  <div class="header-row">
+    <Logo />
+
+    <div class="nav-box">
+      <Menu />
+      <Navigation />
+    </div>
+  </div>
 </header>
+
+<style>
+  header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .nav-box {
+  color: #000000;
+  padding: 12px 25px;
+  border-radius: 999px;
+  width: fit-content;
+  font-family: Tahoma, sans-serif;
+  }
+
+  .nav-box a {
+    display: inline-block;
+    margin-right: 15px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+  }
+
+  .nav-box a:last-child {
+    margin-right: 0;
+  }
+
+  .nav-box a:hover {
+    color: #000000;
+  }
+</style>
