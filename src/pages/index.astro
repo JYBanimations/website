@@ -2,32 +2,67 @@
 import '../styles/global.css';
 import Header from '../components/header.astro';
 import Welcome from "../components/rect.astro";
+import ImageCard from '../components/imagecard.astro';
+import film_keith_01 from '../assets/images/film_keith_01.png';
+import film_dms_01 from '../assets/images/film_dms_01.png';
+import film_martha_01 from '../assets/images/film_martha_01.png';
+import film_tatakai_01 from '../assets/images/film_tatakai_01.png';
+
+
 const pageTitle = 'JYBanimations';
 ---
 
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <title>{pageTitle}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400..900&family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
   </head>
   <body>
     <Header />
     <h1 id="glow-text">{pageTitle}</h1>
 
+
+  <div class="film-cards-container">
+  <ImageCard image={film_keith_01.src} size="200px" borderRadius="20px" link="https://youtu.be/bN1qDbNpi0g?si=EDrfEDkE6_hYtpHG" />
+  <ImageCard image={film_dms_01.src} size="200px" borderRadius="20px" link="https://youtu.be/VrsKa1s3kCo?si=NQ8CAOlSPHs5vRAi" />
+  <ImageCard image={film_martha_01.src} size="200px" borderRadius="20px" link="https://youtu.be/foBP5mWro-I?si=m4PTk4HlOK6P7Dk_" />
+  <ImageCard image={film_tatakai_01.src} size="200px" borderRadius="20px" link="https://youtu.be/HgINY40MVB4?si=ex07SPpdCClS27kT" />
+  </div>
+
+
+
     <Welcome
-      width="400px"
-      height="150px"
       background="#ffffff"
       borderRadius="40px"
       padding="25px"
       center="true"
     >
-      <h2>About Me</h2>
+      <h2>
+        I am a 16-year-old animator <br>
+        with a passion for bringing Lego Bricks<br>to life
+        with
+        <span class="tooltip-container"> Brickfilming
+          <span class="tooltip-card">
+            Brick | film<br>['brɪkfɪlm] <br><br> A stop-motion animation,<br>made with Lego bricks.
+          </span>
+          </span>
+        . 
+        <span class="quote">"Trying to get better with every shot."</span>
+      </h2>
     </Welcome>
 
 
 
   </body>
   <style>
+    h2 {
+      text-align: center;
+    }
     #glow-text {
     color:white;
     font-size: 5rem;
@@ -38,57 +73,99 @@ const pageTitle = 'JYBanimations';
     text-align: center;
     /*filter: drop-shadow(0 0 600px #ffffff);*/
     opacity: 0; /* start invisible */
-    animation: fadeIn 2s forwards; /* 2s fade-in */
-    animation-delay: 0.3s;
+    transition: opacity 1.5s ease;
     
     }
     #glow-text span {
     display: inline-block;
     transition: text-shadow 0.1s ease;
+    
     }
-    @keyframes fadeIn {
-    from {
+    .film-cards-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+      gap: 20px;
+      justify-items: center; /* center each card in its cell */
+      justify-content: center;
+    }
+    .quote {
+      font-family: 'Albert+Sans', fat; /* or any font you want */
+      font-size: 2.4rem;    /* adjust size */
+      font-weight: bold;    /* thickness */
+      color: #000000;       /* optional: change color */
+      display: block;       /* makes it appear on its own line */
+      margin-top: 15px;     /* optional: space from previous line */
+    }
+    .tooltip-container {
+      position: relative; /* container for positioning the tooltip */
+      cursor: pointer;    /* shows pointer on hover */
+      color: #d95257;     /* optional highlight */
+      font-weight: bold;
+    }
+
+    .tooltip-card {
+      position: absolute;
+      top: -10px;         /* adjust vertical position */
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%); /* center above the word */
+      background-color: #404040;
+      color: #fff;
+      padding: 20px 30px;
+      border-radius: 12px; 
+      white-space: nowrap;
       opacity: 0;
+      pointer-events: none; /* so it doesn’t block hover */
+      transition: opacity 0.3s ease;
+      z-index: 100; /* appears above everything else */
     }
-    to {
+
+    .tooltip-container:hover .tooltip-card {
       opacity: 1;
+      pointer-events: auto; /* enable interaction if needed */
     }
-  }
   </style>
+
   <script>
-const text = document.getElementById('glow-text')!;
-const maxRadius = 100; // glow radius around cursor
-const baseGlow = [3, 10, 70]; // always-on glow
-const extraGlow = [20, 40, 120]; // additional glow near cursor
+    const text = document.getElementById('glow-text')!;
+    const maxRadius = 100; 
+    const baseGlow = [3, 10, 70];
+    const extraGlow = [20, 40, 120];
 
-// Wrap each letter in a span
-text.innerHTML = text.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
-const letters = text.querySelectorAll('span');
+    // Wrap letters in spans
+      text.innerHTML = text.textContent.split('').map(l => `<span>${l}</span>`).join('');
+      const letters = text.querySelectorAll('span');
 
-document.addEventListener('mousemove', (e) => {
-  letters.forEach(letter => {
-    const rect = letter.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+      let hasFadedIn = false; // track if fade-in has occurred
 
-    const dx = e.clientX - centerX;
-    const dy = e.clientY - centerY;
-    const distance = Math.sqrt(dx * dx + dy * dy);
+      document.addEventListener('mousemove', (e) => {
+        // Fade in on first cursor movement
+        if (!hasFadedIn) {
+          text.style.opacity = "1"; // trigger fade-in
+          hasFadedIn = true;
+        }
 
-    // intensity: 1 = cursor on top, 0 = at max radius or further
-    const intensity = Math.max(0, 1 - distance / maxRadius);
+        // Glow effect
+        letters.forEach(letter => {
+          const rect = letter.getBoundingClientRect();
+          const centerX = rect.left + rect.width / 2;
+          const centerY = rect.top + rect.height / 2;
 
-    // Combine base glow + extra glow proportional to intensity
-    const glow1 = baseGlow[0] + extraGlow[0] * intensity;
-    const glow2 = baseGlow[1] + extraGlow[1] * intensity;
-    const glow3 = baseGlow[2] + extraGlow[2] * intensity;
+          const dx = e.clientX - centerX;
+          const dy = e.clientY - centerY;
+          const distance = Math.sqrt(dx*dx + dy*dy);
 
-    letter.style.textShadow = `
-      0 0 ${glow1}px #ffffff,
-      0 0 ${glow2}px #ffffff,
-      0 0 ${glow3}px #ffffff
-    `;
-  });
-});
+          const intensity = Math.max(0, 1 - distance / maxRadius);
+
+          const glow1 = baseGlow[0] + extraGlow[0] * intensity;
+          const glow2 = baseGlow[1] + extraGlow[1] * intensity;
+          const glow3 = baseGlow[2] + extraGlow[2] * intensity;
+
+          letter.style.textShadow = `
+            0 0 ${glow1}px #ffffff,
+            0 0 ${glow2}px #ffffff,
+            0 0 ${glow3}px #ffffff
+          `;
+        });
+      });
 </script>
 </html>

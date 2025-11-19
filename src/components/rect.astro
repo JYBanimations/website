@@ -1,7 +1,7 @@
 ---
 const {
-  width = "300px",
-  height = "120px",
+  width,           // remove default width
+  height,
   background = "#e0e0e0",
   borderRadius = "20px",
   padding = "20px",
@@ -16,8 +16,8 @@ const {
 <div
   class="rounded-box"
   style={` 
-    width: ${width};
-    height: ${height};
+    ${width ? `width: ${width};` : ""}
+    ${height ? `height: ${height};` : ""}
     background: ${background};
     border-radius: ${borderRadius};
     padding: ${padding};
