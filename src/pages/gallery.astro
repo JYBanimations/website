@@ -1,0 +1,97 @@
+---
+import '../styles/global.css';
+import Header from '../components/header.astro';
+import VideoCard from '../components/gallery_cell.astro';
+import img_dms_01 from "../assets/images/film_dms_01.png";
+import img_keith_01 from "../assets/images/film_keith_01.png";
+import img_martha_01 from "../assets/images/film_martha_01.png";
+import img_tatakai_01 from "../assets/images/film_tatakai_01.png";
+const pageTitle = 'GALLERY';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+
+  <body>
+    <Header />
+
+    <div class="film-grid">
+      <div class="card-wrapper">
+      <VideoCard
+        image={img_dms_01.src}
+        link="https://youtu.be/VrsKa1s3kCo?si=qxX5oG_48WOWkXHd"
+        title="Giyu vs Akaza | KIMETSU NO YAIBA"
+        date="18.11.2024"
+        length="01:30"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper">
+      <VideoCard
+        image={img_keith_01.src}
+        link="https://youtu.be/bN1qDbNpi0g?si=VPCBGm-Bhb7-GHMP"
+        title="Keith, Journey to the Icetops"
+        date="05.01.2025"
+        length="02:18"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper">
+      <VideoCard
+        image={img_martha_01.src}
+        link="https://youtu.be/foBP5mWro-I?si=t3MMDaRP22_J3YRZ"
+        title="Ancient Finds (Martha would be proud)"
+        date="03.01.2025"
+        length="00:39"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper">
+      <VideoCard
+        image={img_tatakai_01.src}
+        link="https://youtu.be/HgINY40MVB4?si=nKN6MY4CDztP9Ixc"
+        title="TATAKAI • Fight Sequence"
+        date="07.01.2025"
+        length="00:36"
+        size="250px"
+      />
+      </div>
+
+    </div>
+
+  </body>
+</html>
+
+<style>
+.gallery-title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 42px;
+  letter-spacing: 2px;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  justify-content: center; /* center the whole grid */
+  padding: 0 40px;
+}
+.card-wrapper {
+  width: 250px;       /* same as your VideoCard size */
+  height: auto;
+  overflow: visible;  /* allow info panel to slide out */
+  display: flex;      /* center the card inside wrapper */
+  justify-content: center;
+  position: relative; /* for absolute-positioned info panel */
+}
+</style>

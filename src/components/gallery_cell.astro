@@ -1,0 +1,130 @@
+---
+interface Props {
+  image: string;
+  size?: string; // e.g., "200px"
+  borderRadius?: string;
+  link?: string;
+  title?: string;
+  date?: string;
+  length?: string;
+}
+
+const {
+  image,
+  size = "200px",
+  borderRadius = "20px",
+  link,
+  title = "Title",
+  date = "2024",
+  length = "0:00",
+} = Astro.props;
+---
+
+<div class="card" style={`--size:${size}; --radius:${borderRadius};`}>
+  <!-- IMAGE -->
+  <div class="image-container">
+    <div class="image" style={`background-image:url(${image});`}></div>
+
+    {link && (
+      <a href={link} target="_blank" class="icon">
+        <!-- YouTube icon -->
+        <svg viewBox="0 0 24 24" fill="white" width="40" height="40">
+          <path d="M23.498 6.186a2.998 2.998 0 0 0-2.11-2.116C19.83 3.5 12 3.5 12 3.5s-7.83 0-9.388.57a2.998 2.998 0 0 0-2.11 2.116A31.47 31.47 0 0 0 0 12a31.47 31.47 0 0 0 .502 5.814 2.998 2.998 0 0 0 2.11 2.116C4.17 20.5 12 20.5 12 20.5s7.83 0 9.388-.57a2.998 2.998 0 0 0 2.11-2.116A31.47 31.47 0 0 0 24 12a31.47 31.47 0 0 0-.502-5.814zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+        </svg>
+      </a>
+    )}
+  </div>
+
+  <!-- INFO PANEL -->
+  <div class="info-panel">
+    <h3>{title}</h3>
+    <p>Date: {date}</p>
+    <p>Length: {length}</p>
+  </div>
+</div>
+
+<style>
+.card {
+  position: relative;
+  width: var(--size);
+  height: var(--size); /* card and image height */
+  overflow: visible; /* allow panel to extend left */
+  z-index: 0; /* default stacking */
+  transition: z-index 0s ease; /* allow instant z-index change */
+}
+
+
+/* IMAGE */
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 100%; /* full card height */
+  border-radius: var(--radius);
+  overflow: hidden;
+  z-index: 2;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: filter 0.3s ease;
+}
+
+.card:hover .image {
+  filter: blur(4px);
+  z-index: 10; /* bring the hovered card above neighbors */
+
+}
+
+/* ICON */
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.card:hover .icon {
+  opacity: 1;
+}
+
+/* INFO PANEL */
+.info-panel {
+  position: absolute;
+  top: 0;
+  right: 100%;              /* attach to left of image */
+  height: 83%;             /* match image height */
+  width: calc(var(--size) * 1.2); /* extend to the left */
+  background: #404040;
+  border-radius: var(--radius) 0 0 var(--radius);
+  color: white;
+  transform: translateX(-30px); /* partially hidden */
+  opacity: 0;
+  transition: all 0.4s ease;
+  z-index: 1; /* behind image */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  pointer-events: none;
+}
+
+.card:hover .info-panel {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* TEXT */
+.info-panel h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.2rem;
+}
+.info-panel p {
+  margin: 2px 0;
+}
+</style>
