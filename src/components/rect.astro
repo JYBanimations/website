@@ -1,0 +1,39 @@
+---
+const {
+  width = "300px",
+  height = "120px",
+  background = "#e0e0e0",
+  borderRadius = "20px",
+  padding = "20px",
+  contentAlign = "center",         // center, left, right
+  contentVertical = "center",      // center, top, bottom
+  shadow = "0 4px 12px rgba(0,0,0,0.15)",
+  style = "",
+  center = false,
+} = Astro.props;
+---
+
+<div
+  class="rounded-box"
+  style={` 
+    width: ${width};
+    height: ${height};
+    background: ${background};
+    border-radius: ${borderRadius};
+    padding: ${padding};
+    display: flex;
+    justify-content: ${contentAlign};
+    align-items: ${contentVertical};
+    box-shadow: ${shadow};
+    ${style}
+    ${center ? "margin: 0 auto; display: flex; justify-content: center; align-items: center;" : ""}
+  `}
+>
+  <slot />
+</div>
+
+<style>
+  .rounded-box {
+    box-sizing: border-box;
+  }
+</style>

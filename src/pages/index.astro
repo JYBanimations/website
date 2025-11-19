@@ -1,7 +1,8 @@
 ---
 import '../styles/global.css';
 import Header from '../components/header.astro';
-const pageTitle = 'ABOUT';
+import Welcome from "../components/rect.astro";
+const pageTitle = 'JYBanimations';
 ---
 
 <html lang="en">
@@ -10,9 +11,84 @@ const pageTitle = 'ABOUT';
   </head>
   <body>
     <Header />
-    <h1>{pageTitle}</h1>
+    <h1 id="glow-text">{pageTitle}</h1>
 
-  <script>
-  </script>
+    <Welcome
+      width="400px"
+      height="150px"
+      background="#ffffff"
+      borderRadius="40px"
+      padding="25px"
+      center="true"
+    >
+      <h2>About Me</h2>
+    </Welcome>
+
+
+
   </body>
+  <style>
+    #glow-text {
+    color:white;
+    font-size: 5rem;
+    /*text-shadow:
+      0 0 3px #ffffff,
+      0 0 10px #ffffff,
+      0 0 70px #ffffff;*/
+    text-align: center;
+    /*filter: drop-shadow(0 0 600px #ffffff);*/
+    opacity: 0; /* start invisible */
+    animation: fadeIn 2s forwards; /* 2s fade-in */
+    animation-delay: 0.3s;
+    
+    }
+    #glow-text span {
+    display: inline-block;
+    transition: text-shadow 0.1s ease;
+    }
+    @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  </style>
+  <script>
+const text = document.getElementById('glow-text')!;
+const maxRadius = 100; // glow radius around cursor
+const baseGlow = [3, 10, 70]; // always-on glow
+const extraGlow = [20, 40, 120]; // additional glow near cursor
+
+// Wrap each letter in a span
+text.innerHTML = text.textContent.split('').map(letter => `<span>${letter}</span>`).join('');
+const letters = text.querySelectorAll('span');
+
+document.addEventListener('mousemove', (e) => {
+  letters.forEach(letter => {
+    const rect = letter.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+
+    const dx = e.clientX - centerX;
+    const dy = e.clientY - centerY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    // intensity: 1 = cursor on top, 0 = at max radius or further
+    const intensity = Math.max(0, 1 - distance / maxRadius);
+
+    // Combine base glow + extra glow proportional to intensity
+    const glow1 = baseGlow[0] + extraGlow[0] * intensity;
+    const glow2 = baseGlow[1] + extraGlow[1] * intensity;
+    const glow3 = baseGlow[2] + extraGlow[2] * intensity;
+
+    letter.style.textShadow = `
+      0 0 ${glow1}px #ffffff,
+      0 0 ${glow2}px #ffffff,
+      0 0 ${glow3}px #ffffff
+    `;
+  });
+});
+</script>
 </html>
