@@ -1,18 +1,89 @@
 ---
 import '../styles/global.css';
 import Header from '../components/header.astro';
+import SocialCard from '../components/social_card.astro';
+import Title from '../components/title.astro';
+
+import iconInsta from "../assets/icons/icon_insta.png";
+import iconBIM from "../assets/icons/icon_BIM.webp";
+import iconYoutube from "../assets/icons/icon_youtube.png";
+import iconBrickboard from "../assets/icons/Icon_brickboard.png";
 const pageTitle = 'SOCIALS';
 ---
 
 <html lang="en">
   <head>
-
     <title>{pageTitle}</title>
   </head>
   <body>
     <Header />
-    <h1>{pageTitle}</h1>
+
+  <Title 
+  text="SOCIALS" 
+  marginTop="50px" 
+  marginBottom="40px" 
+  fontSize="60px" 
+  color="#e0e0e0"
+  lineWidth="150px"
+  delay="1s"
+  />
+
+<div class="social-cards-container">
+
+  <div class="social-card-wrapper" style="--delay: 0s;">
+    <SocialCard
+      image={iconYoutube.src}
+      title="YouTube"
+      subtitle="Finished Products!"
+      size="70px"
+      link="https://www.youtube.com/@jybanimations"
+    />
+  </div>
+
+  <div class="social-card-wrapper" style="--delay: 0.2s;">
+    <SocialCard
+      image={iconBrickboard.src}
+      title="Brickboard"
+      subtitle="THE german Brickfilm community"
+      size="70px"
+      link="https://www.brickboard.de/profil/jybanimations?tab=info"
+    />
+  </div>
+
+  <div class="social-card-wrapper" style="--delay: 0.4s;">
+    <SocialCard
+      image={iconBIM.src}
+      title="Bricks In Motion"
+      subtitle="An archive"
+      size="70px"
+      link="https://bricksinmotion.com/forums/user/172001/"
+    />
+  </div>
+
+  <div class="social-card-wrapper" style="--delay: 0.6s;">
+    <SocialCard
+      image={iconInsta.src}
+      title="Instagram"
+      subtitle="BTS and other content!"
+      size="70px"
+      link="https://www.instagram.com/jybanimations/"
+    />
+  </div>
+
+</div>
+
+  <style>
+  .social-cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+
+  }
 
 
-  </body>
+  </style>
+
 </html>

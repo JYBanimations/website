@@ -2,10 +2,23 @@
 import '../styles/global.css';
 import Header from '../components/header.astro';
 import VideoCard from '../components/gallery_cell.astro';
-import img_dms_01 from "../assets/images/film_dms_01.png";
-import img_keith_01 from "../assets/images/film_keith_01.png";
-import img_martha_01 from "../assets/images/film_martha_01.png";
-import img_tatakai_01 from "../assets/images/film_tatakai_01.png";
+import Title from '../components/title.astro';
+
+import img_ancfi from "../assets/images/film_ancfi.png";
+import img_drsly from "../assets/images/film_drsly.jpg";
+import img_hn from "../assets/images/film_hn.jpg";
+import img_keith from "../assets/images/film_keith.jpg";
+import img_kny1 from "../assets/images/film_kny.png";
+import img_order from "../assets/images/film_order.webp";
+import img_sprfs from "../assets/images/film_sprfs.png";
+import img_tatakai from "../assets/images/film_tatakai.jpg";
+import img_unit from "../assets/images/film_unit.jpg";
+import img_uniteight from "../assets/images/film_uniteight.jpg";
+import img_whrgrse from "../assets/images/film_whrgrse.png";
+import img_whrto from "../assets/images/film_whrto.jpg";
+import img_nvs from "../assets/images/film_nvs.png";
+import img_dstsns from "../assets/images/film_dstsns.png";
+import img_wsrfh from "../assets/images/film_wsrfh.png";
 const pageTitle = 'GALLERY';
 ---
 
@@ -21,22 +34,88 @@ const pageTitle = 'GALLERY';
   <body>
     <Header />
 
+      <Title 
+        text="GALLERY" 
+        marginTop="50px" 
+        marginBottom="40px" 
+        fontSize="60px" 
+        color="#e0e0e0"
+        lineWidth="150px"
+        delay="1s"
+        />
+
     <div class="film-grid">
-      <div class="card-wrapper">
+
+      <div class="card-wrapper" style="--delay: 0.5s;"> 
       <VideoCard
-        image={img_dms_01.src}
-        link="https://youtu.be/VrsKa1s3kCo?si=qxX5oG_48WOWkXHd"
-        title="Giyu vs Akaza | KIMETSU NO YAIBA"
-        date="18.11.2024"
-        length="01:30"
+        image={img_hn.src}
+        link="https://www.youtube.com/watch?v=3rbdLMs1_-E"
+        title="Hollow Knight VS Demon Slayer"
+        date="12.11.2024"
+        length="00:35"
         size="250px"
       />
       </div>
 
-      <div class="card-wrapper">
+      <div class="card-wrapper" style="--delay: 0.5s;"> 
       <VideoCard
-        image={img_keith_01.src}
-        link="https://youtu.be/bN1qDbNpi0g?si=VPCBGm-Bhb7-GHMP"
+        image={img_whrto.src}
+        link="https://www.youtube.com/watch?v=4Bn5UktoD5c"
+        title="Where To?"
+        date="01.11.2024"
+        length="05:44"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.5s;"> 
+      <VideoCard
+        image={img_sprfs.src}
+        link="https://www.youtube.com/watch?v=wD1ZE1d1uB0"
+        title="Letters and Blood"
+        date="18.07.2024"
+        length="01:04"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.5s;">
+      <VideoCard
+        image={img_drsly.src}
+        link="https://www.youtube.com/watch?v=lH-f9wt7cSY"
+        title="Darkstyle - BRAWL 2025"
+        date="06.07.2025"
+        length="02:18"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.7s;">
+      <VideoCard
+        image={img_uniteight.src}
+        link="https://www.youtube.com/watch?v=o4hNY1OsisI"
+        title="UNIT 8"
+        date="17.05.2025"
+        length="01:13"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.7s;">
+      <VideoCard
+        image={img_tatakai.src}
+        link="https://youtu.be/HgINY40MVB4?si=nKN6MY4CDztP9Ixc"
+        title="TATAKAI • Fight Sequence"
+        date="07.01.2025"
+        length="00:36"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.7s;">
+      <VideoCard
+        image={img_keith.src}
+        link="https://www.youtube.com/watch?v=bN1qDbNpi0g&t=1s"
         title="Keith, Journey to the Icetops"
         date="05.01.2025"
         length="02:18"
@@ -44,24 +123,90 @@ const pageTitle = 'GALLERY';
       />
       </div>
 
-      <div class="card-wrapper">
+      <div class="card-wrapper" style="--delay: 0.7s;">
       <VideoCard
-        image={img_martha_01.src}
-        link="https://youtu.be/foBP5mWro-I?si=t3MMDaRP22_J3YRZ"
-        title="Ancient Finds (Martha would be proud)"
+        image={img_ancfi.src}
+        link="https://www.youtube.com/watch?v=foBP5mWro-I"
+        title="Ancient Finds"
         date="03.01.2025"
         length="00:39"
         size="250px"
       />
       </div>
 
-      <div class="card-wrapper">
+      <div class="card-wrapper" style="--delay: 0.9s;">
       <VideoCard
-        image={img_tatakai_01.src}
-        link="https://youtu.be/HgINY40MVB4?si=nKN6MY4CDztP9Ixc"
-        title="TATAKAI • Fight Sequence"
-        date="07.01.2025"
-        length="00:36"
+        image={img_kny1.src}
+        link="https://www.youtube.com/watch?v=VrsKa1s3kCo"
+        title="Giyu vs Akaza | KIMETSU NO YAIBA"
+        date="18.11.2024"
+        length="01:30"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.9s;">
+      <VideoCard
+        image={img_unit.src}
+        link="https://www.youtube.com/watch?v=JkdbnSKp6QY"
+        title="UNIT"
+        date="16.11.2023"
+        length="00:53"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.9s;">
+      <VideoCard
+        image={img_order.src}
+        link="https://www.youtube.com/watch?v=c1HMDlr0Trg"
+        title="Order 67 - A STAR WARS STORY "
+        date="10.7.2023"
+        length="02:48"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 0.9s;">
+      <VideoCard
+        image={img_whrgrse.src}
+        link="https://www.youtube.com/watch?v=D1e7RX93lc8"
+        title="Eine Welt mit wahrer Größe | Steinerei 2023"
+        date="13.6.2023"
+        length="05:37"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 1.1s;">
+      <VideoCard
+        image={img_dstsns.src}
+        link="https://www.youtube.com/watch?v=_ANsum6M7FE"
+        title="Dr. Strange trys some new spells!"
+        date="21.01.2023"
+        length="01:47"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 1.1s;">
+      <VideoCard
+        image={img_nvs.src}
+        link="https://www.youtube.com/watch?v=mgd0ESUfgy0"
+        title="Nightwing VS Skeletto"
+        date="13.02.2022"
+        length="01:23"
+        size="250px"
+      />
+      </div>
+
+      <div class="card-wrapper" style="--delay: 1.1s;">
+      <VideoCard
+        image={img_wsrfh.src}
+        link="https://youtu.be/Rq2vbBSLKSg?si=Ofw7iT7n7nvmjvfK"
+        title="WASSER -Friedrich Hagen ermittelt-"
+        date="18.02.2021"
+        length="03:15"
         size="250px"
       />
       </div>
@@ -87,11 +232,26 @@ const pageTitle = 'GALLERY';
   padding: 0 40px;
 }
 .card-wrapper {
-  width: 250px;       /* same as your VideoCard size */
+  width: 250px;       
   height: auto;
-  overflow: visible;  /* allow info panel to slide out */
-  display: flex;      /* center the card inside wrapper */
+  overflow: visible;  
+  display: flex;      
   justify-content: center;
-  position: relative; /* for absolute-positioned info panel */
+  position: relative; 
+  opacity: 0; /* start hidden */
+  transform: translateY(20px); /* slide up effect */
+  animation: fadeInUp 0.8s var(--delay) forwards;
+}
+
+/* Fade and slide animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

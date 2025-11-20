@@ -1,0 +1,94 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  subtitle?: string;
+  link?: string;     // link to open when clicking image
+  size?: string;
+}
+
+const {
+  image,
+  title,
+  subtitle,
+  link = "#",
+  size = "70px"
+} = Astro.props;
+---
+
+<div class="social-card" style={`--img-size:${size};`}>
+  
+  <a href={link} target="_blank" rel="noopener noreferrer">
+    <img src={image} alt={title} class="social-img" />
+  </a>
+
+  <div class="text">
+    <h3>{title}</h3>
+    {subtitle && <p>{subtitle}</p>}
+  </div>
+</div>
+
+<style>
+.social-card {
+  width: 350px;
+  background: #404040;
+  padding: 16px;
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;   /* ← THIS centers image + text vertically */
+  gap: 16px;
+
+  color: white;
+  transition: transform 0.25s ease;
+
+  height: 80px;         /* optional */
+      /* Animation */
+  opacity: 0;               /* start invisible */
+  transform: translateY(50px); /* start lower */
+    animation: flyIn 0.6s var(--delay) forwards ease-out;
+
+
+
+}
+  @keyframes flyIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  }
+
+.social-card:hover {
+  transform: translateY(-4px);
+}
+
+.social-img {
+  display:block;
+  width: var(--img-size);
+  height: var(--img-size);
+  border-radius: 14px;
+  object-fit: cover;
+
+  transition: opacity 0.2s;
+}
+
+.social-img:hover {
+  opacity: 0.8;
+}
+
+.text h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.text p {
+  margin: 4px 0 0 0;
+  opacity: 0.85;
+  font-size: 0.9rem;
+}
+</style>    

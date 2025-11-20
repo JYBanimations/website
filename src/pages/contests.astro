@@ -1,0 +1,134 @@
+---
+import '../styles/global.css';
+import Header from '../components/header.astro';
+import Title from '../components/title.astro';
+import ContestCard from '../components/contest_card.astro';
+import Image from "../assets/images/film_ancfi.png";
+const pageTitle = 'CONTESTS';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <Header />
+
+    <Title 
+      text="CONTESTS" 
+      marginTop="50px" 
+      marginBottom="40px" 
+      fontSize="60px" 
+      color="#e0e0e0"
+      lineWidth="150px"
+      delay="1s"
+    />
+
+    <div class="contest-cards-grid">
+
+        <div class="contest-card-wrapper" style="--delay: 0s;">
+        <ContestCard
+          image={Image.src}
+          contestName="Tales of Terror"
+          date="2025"
+          filmName="<br>Where To?"
+          showWreath={false}
+        />
+      </div>
+
+        <div class="contest-card-wrapper" style="--delay: 0.2s;">
+        <ContestCard
+          image={Image.src}
+          contestName="SUPERFEST"
+          date="2025"
+          filmName="<br>Letters and Blood"
+          showWreath={false}
+        />
+      </div>
+
+        <div class="contest-card-wrapper" style="--delay: 0.3s;">
+        <ContestCard
+          image={Image.src}
+          contestName="BRAWL"
+          date="2025"
+          filmName="<br>Darkstyle"
+          showWreath={false}
+        />
+      </div>
+
+        <div class="contest-card-wrapper" style="--delay: 0.4s;">
+        <ContestCard
+          image={Image.src}
+          contestName="Brickfilmday Animation Contest"
+          date="2025"
+          filmName="<br>1. Objective: Fight HIDE<br>2. Charmed, but not Harmed<br>3. Lifting!"
+          showWreath={false}
+        />
+      </div>
+
+        <div class="contest-card-wrapper" style="--delay: 0.5s;">
+        <ContestCard
+          image={Image.src}
+          contestName="THAC 2025"
+          date="2025"
+          filmName="<br>Keith, Journey to the Icetops"
+          showWreath={false}
+        />
+      </div>
+
+        <div class="contest-card-wrapper" style="--delay: 0.6s;">
+        <ContestCard
+          image={Image.src}
+          contestName="Steinerei 2023"
+          date="2023"
+          filmName="<br>Eine Welt mit wahrer Größe"
+          showWreath={false}
+        />
+      </div>
+
+      <div class="contest-card-wrapper" style="--delay: 0.7s;">
+        <ContestCard
+          image={Image.src}
+          contestName="Local Contest"
+          date="2021"
+          filmName="<br>WASSER -Friedrich Hagen ermittelt-"
+          showWreath={false}
+        />
+      </div>
+
+
+    </div>
+
+    <style>
+      .contest-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* exactly 4 columns */
+  gap: 25px;
+  justify-content: center; /* center the rows if they are not full */
+  padding: 0 40px;
+  margin-top: 40px;
+}
+
+      .contest-card-wrapper {
+        opacity: 0;
+        transform: translateY(50px);
+        animation: slideInUp 0.6s var(--delay) forwards ease-out;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </body>
+</html>

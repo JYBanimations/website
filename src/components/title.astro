@@ -1,0 +1,49 @@
+---
+interface Props {
+  text: string;
+  marginTop?: string;
+  marginBottom?: string;
+  fontSize?: string;
+  color?: string;
+  lineWidth?: string;
+  delay?: string; // animation delay
+}
+
+const {
+  text,
+  marginTop = "20px",
+  marginBottom = "20px",
+  fontSize = "48px",
+  color = "white",
+  lineWidth = "60px",
+  delay = "0s",
+} = Astro.props;
+---
+
+<div class="site-title" style={`margin-top:${marginTop}; margin-bottom:${marginBottom}; font-size:${fontSize}; color:${color}; --delay:${delay};`}>
+  {text}
+  <hr class="title-line" style={`width:${lineWidth}; --delay:${delay};`} />
+</div>
+
+<style>
+.site-title {
+  text-align: center;
+  opacity: 0;
+  animation: fadeInDown 1s var(--delay) forwards;
+}
+
+.title-line {
+  height: 4px;
+  background-color: currentColor;
+  margin: 12px auto 0 auto;
+  border: none;
+  border-radius: 2px;
+  opacity: 0;
+  animation: fadeInDown 1s var(--delay) forwards;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
